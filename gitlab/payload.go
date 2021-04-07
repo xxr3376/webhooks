@@ -495,7 +495,19 @@ type Author struct {
 
 // Changes contains all changes associated with a GitLab issue or MR
 type Changes struct {
-	LabelChanges LabelChanges `json:"labels"`
+	LabelChanges *LabelChanges  `json:"labels"`
+	Description  *StringChanges `json:"description"`
+	AssigneeID   *Int64Changes  `json:"assignee_id"`
+}
+
+type Int64Changes struct {
+	Previous int64 `json:"previous"`
+	Current  int64 `json:"current"`
+}
+
+type StringChanges struct {
+	Previous string `json:"previous"`
+	Current  string `json:"current"`
 }
 
 // LabelChanges contains changes in labels assocatiated with a GitLab issue or MR
